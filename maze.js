@@ -3,3 +3,5 @@ const maze = [
   ["#", " ", "#", " "],
   ["#", " ", " ", "E"],
 ];
+
+console.log(maze)
