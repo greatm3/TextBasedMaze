@@ -39,11 +39,24 @@ class Player {
             break;
     }
   }
+
+  #validMove(direction) {
+    
+  }
 }
 
 let game = new Maze();
 let player = new Player(game);
 
+player.move("right")
+player.move("left")
+player.move("up")
+player.move("right")
+player.move("down")
+player.move("left")
+player.move("left")
+player.move("down")
+player.move("down")
 player.move("right")
 
 console.log(player);
