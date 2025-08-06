@@ -1,18 +1,25 @@
-const maze = [
-  ["P", " ", "#", " "],
-  ["#", " ", "#", " "],
-  ["#", " ", " ", " "],
-  ["P", "#", "#", " "],
-  ["#", " ", " ", " "],
-  ["#", "E", "#", "#"],
-];
-
 class Maze {
   constructor() {
-    this.maze = maze;
+    this.maze = [
+      ["P", " ", "#", " "],
+      ["#", " ", "#", " "],
+      ["#", " ", " ", " "],
+      ["P", "#", "#", " "],
+      ["#", " ", " ", " "],
+      ["#", "E", "#", "#"],
+    ];
   }
 }
 
-let game = new Maze()
+class Player {
+  constructor(maze) {
+    if (maze instanceof Maze) {
+      this.maze = maze;
+    }
+  }
+}
 
-console.log(game.maze)
+let game = new Maze();
+let player = new Player(game);
+
+console.log(player.maze);
