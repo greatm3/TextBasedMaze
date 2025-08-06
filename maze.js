@@ -10,14 +10,22 @@ class Maze {
     ];
 
     this.gridInfo = {
-      height: this.maze.length,
       width: this.maze[0].length,
+      height: this.maze.length,
     };
 
     this.startingPoint = {
       x: 0,
       y: 0,
     };
+  }
+
+  set location(position) {
+    this.maze[position.y][position.x] = "x"; 
+  }
+
+  get location() {
+    return this.maze
   }
 }
 
@@ -34,6 +42,7 @@ class Player {
     switch (direction) {
       case "right":
         this.position.x++;
+        this.#maze.location = this.position
         break;
       case "left":
         this.position.x--;
@@ -49,8 +58,12 @@ class Player {
   }
 
   #validMove(direction) {
-    if (this.position[0]) {
+    if (this.position.x) {
     }
+  }
+
+  get maze() {
+    return this.#maze.location;
   }
 }
 
@@ -58,15 +71,6 @@ let game = new Maze();
 let player = new Player(game);
 
 player.move("right");
-player.move("left");
-player.move("up");
-player.move("right");
-player.move("down");
-player.move("left");
-player.move("left");
-player.move("down");
-player.move("down");
-player.move("right");
 
 console.log(player);
-console.log(game.gridInfo);
+console.log(player.maze);
