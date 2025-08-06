@@ -9,13 +9,20 @@ class Maze {
       ["#", "E", "#", "#"],
     ];
 
-    this.startingPoint = [0, 0];
+    this.gridInfo = {
+      height: this.maze.length,
+      width: this.maze[0].length,
+    };
+
+    this.startingPoint = {
+      x: 0,
+      y: 0,
+    };
   }
 }
 
 class Player {
   #maze;
-  #gridInfo;
   constructor(maze) {
     if (maze instanceof Maze) {
       this.#maze = maze;
@@ -26,22 +33,25 @@ class Player {
   move(direction) {
     switch (direction) {
       case "right":
-        this.position[1]++;
+        this.position.x++;
         break;
       case "left":
-        this.position[1]--;
+        this.position.x--;
         break;
       case "up":
-        this.position[0]--;
+        this.position.y--;
         break;
       case "down":
-        this.position[0]++;
+        this.position.y++;
       default:
         break;
     }
   }
 
-  #validMove(direction) {}
+  #validMove(direction) {
+    if (this.position[0]) {
+    }
+  }
 }
 
 let game = new Maze();
@@ -59,3 +69,4 @@ player.move("down");
 player.move("right");
 
 console.log(player);
+console.log(game.gridInfo);
