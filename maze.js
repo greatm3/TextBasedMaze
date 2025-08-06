@@ -1,7 +1,18 @@
 const maze = [
   ["P", " ", "#", " "],
   ["#", " ", "#", " "],
-  ["#", " ", " ", "E"],
+  ["#", " ", " ", " "],
+  ["P", "#", "#", " "],
+  ["#", " ", " ", " "],
+  ["#", "E", "#", "#"],
 ];
 
-console.log(maze)
+class Maze {
+  constructor() {
+    this.maze = maze;
+  }
+}
+
+let game = new Maze()
+
+console.log(game.maze)
