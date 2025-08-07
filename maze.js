@@ -41,7 +41,6 @@ class Player {
         } else {
           return "Blocked!";
         }
-        break;
 
       case "left":
         if (this.#validMove(direction)) {
@@ -51,14 +50,24 @@ class Player {
         } else {
           return "Blocked!";
         }
-        break;
 
       case "up":
-        this.#position.y--;
-        break;
+        if (this.#validMove(direction)) {
+          this.#position.y--;
+          this.#maze.location = this.#position;
+          return this.position;
+        } else {
+          return "Blocked!";
+        }
 
       case "down":
-        this.#position.y++;
+        if (this.#validMove(direction)) {
+          this.#position.y++;
+          this.#maze.location = this.#position;
+          return this.position;
+        } else {
+          return "Blocked!";
+        }
 
       default:
         break;
@@ -85,12 +94,28 @@ class Player {
 
       return true;
     } else if (direction == "up") {
-      // if (this.position.y == 0 || )
+      if (
+        this.position.y == 0 ||
+        this.#maze.maze[this.#position.y - 1][this.#position.x] == "#"
+      ) {
+        return false;
+      }
+
+      return true;
+    } else {
+      if (
+        this.position.y + 1 == this.#maze.gridInfo.height ||
+        this.#maze.maze[this.#position.y + 1][this.#position.x] == "#"
+      ) {
+        return false;
+      }
+
+      return true;
     }
   }
 
-  get maze() {
-    return this.#maze.location;
+  get position() {
+    return this.#position;
   }
 }
 
