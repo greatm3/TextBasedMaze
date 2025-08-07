@@ -21,11 +21,11 @@ class Maze {
   }
 
   set location(position) {
-    this.maze[position.y][position.x] = "x"; 
+    this.maze[position.y][position.x] = "x";
   }
 
   get location() {
-    return this.maze
+    return this.maze;
   }
 }
 
@@ -42,7 +42,7 @@ class Player {
     switch (direction) {
       case "right":
         this.position.x++;
-        this.#maze.location = this.position
+        this.#maze.location = this.position;
         break;
       case "left":
         this.position.x--;
@@ -58,7 +58,15 @@ class Player {
   }
 
   #validMove(direction) {
-    if (this.position.x) {
+    if (direction == "right") {
+      if (
+        this.position.x + 1 == this.#maze.length ||
+        this.#maze.maze[this.position.y][this.position.x + 1] == "#"
+      ) {
+        return false;
+      }
+
+      return true;
     }
   }
 
