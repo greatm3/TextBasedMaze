@@ -1,3 +1,5 @@
+const Maze = require("./Maze")
+
 class Player {
   #maze;
   #position;
