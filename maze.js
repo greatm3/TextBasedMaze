@@ -18,15 +18,16 @@ class Maze {
       x: 0,
       y: 0,
     };
-  } 
+  }
 }
 
 class Player {
   #maze;
+  #position;
   constructor(maze) {
     if (maze instanceof Maze) {
       this.#maze = maze;
-      this.position = this.#maze.startingPoint;
+      this.#position = this.#maze.startingPoint;
     }
   }
 
@@ -34,8 +35,9 @@ class Player {
     switch (direction) {
       case "right":
         if (this.#validMove(direction)) {
-          this.position.x++;
+          this.#position.x++;
           this.#maze.location = this.position;
+          return this.#position;
         } else {
           return "Blocked!";
         }
@@ -43,19 +45,20 @@ class Player {
 
       case "left":
         if (this.#validMove(direction)) {
-          this.position.x--;
-          this.#maze.location = this.position;
+          this.#position.x--;
+          this.#maze.location = this.#position;
+          return this.position;
         } else {
           return "Blocked!";
         }
         break;
 
       case "up":
-        this.position.y--;
+        this.#position.y--;
         break;
 
       case "down":
-        this.position.y++;
+        this.#position.y++;
 
       default:
         break;
@@ -65,8 +68,8 @@ class Player {
   #validMove(direction) {
     if (direction == "right") {
       if (
-        this.position.x + 1 == this.#maze.gridInfo.width ||
-        this.#maze.maze[this.position.y][this.position.x + 1] == "#"
+        this.#position.x + 1 == this.#maze.gridInfo.width ||
+        this.#maze.maze[this.#position.y][this.#position.x + 1] == "#"
       ) {
         return false;
       }
@@ -74,13 +77,15 @@ class Player {
       return true;
     } else if (direction == "left") {
       if (
-        this.position.x == 0 ||
-        this.#maze.maze[this.position.y][this.position.x - 1] == "#"
+        this.#position.x == 0 ||
+        this.#maze.maze[this.#position.y][this.#position.x - 1] == "#"
       ) {
         return false;
       }
 
       return true;
+    } else if (direction == "up") {
+      // if (this.position.y == 0 || )
     }
   }
 
