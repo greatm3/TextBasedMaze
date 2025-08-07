@@ -33,7 +33,7 @@ class Player {
 
   move(direction) {
     switch (direction) {
-      case "right": 
+      case "right":
         if (this.#isValidMove(direction)) {
           this.#position.x++;
           this.#maze.location = this.position;
