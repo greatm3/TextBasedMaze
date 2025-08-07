@@ -1,4 +1,4 @@
-const Maze = require("./Maze")
+const Maze = require("./Maze");
 
 class Player {
   #maze;
@@ -14,16 +14,19 @@ class Player {
     if (this.#isValidMove(direction)) {
       switch (direction) {
         case "right":
-          this.#position.x++;
+          this.#position.x++; 
+          break
         case "left":
           this.#position.x--;
+          break
         case "up":
           this.#position.y--;
+          break
         case "down":
-          this.#position++;
+          this.#position.y++;
+          break
       }
-
-      this.#maze.location = this.position;
+ 
       return this.position;
     }
     return "Blocked!";
@@ -38,15 +41,16 @@ class Player {
       case "right":
         return x + 1 < this.#maze.gridInfo.width && maze[y][x + 1] != "#";
       case "left":
-        return x == 0 && maze[y][x - 1] != "#";
+        return x < 0 && maze[y][x - 1] != "#";
       case "up":
-        return y - 1 < 0 && maze[y - 1][x] != "x";
+        return y - 1 < 0 && maze[y - 1][x] != "#";
       case "down":
-        return y + 1 < this.#maze.gridInfo.height && maze[y + 1][x] != "x";
+        return y + 1 < this.#maze.gridInfo.height && maze[y + 1][x] != "#";
     }
   }
 
   #isDone() {
+    debugger;
     if (this.#maze.maze[this.#position.y][this.#position.x] == "E") {
       return true;
     }
