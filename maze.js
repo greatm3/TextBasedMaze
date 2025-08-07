@@ -45,9 +45,9 @@ class Player {
           this.position.x++;
           this.#maze.location = this.position;
         } else {
-          return "Blocked!"
+          return "Blocked!";
         }
-        
+
         break;
       case "left":
         this.position.x--;
@@ -65,8 +65,17 @@ class Player {
   #validMove(direction) {
     if (direction == "right") {
       if (
-        this.position.x + 1 == this.#maze.length ||
+        this.position.x + 1 == this.#maze.gridInfo.width ||
         this.#maze.maze[this.position.y][this.position.x + 1] == "#"
+      ) {
+        return false;
+      }
+
+      return true;
+    } else if (direction == "left") {
+      if (
+        this.position.x == 0 ||
+        this.#maze.maze[this.position.y][this.position.x - 1] == "#"
       ) {
         return false;
       }
@@ -79,12 +88,3 @@ class Player {
     return this.#maze.location;
   }
 }
-
-let game = new Maze();
-let player = new Player(game);
-
-player.move("right");
-console.log(player.move("right"))
-
-console.log(player);
-console.log(player.maze);
