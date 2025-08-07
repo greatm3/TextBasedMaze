@@ -1,3 +1,1 @@
-
-
-module.exports = { Maze, Player };
+const Maze = require("./Maze")
