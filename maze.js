@@ -33,17 +33,17 @@ class Player {
 
   move(direction) {
     switch (direction) {
-      case "right":
-        if (this.#validMove(direction)) {
+      case "right": 
+        if (this.#isValidMove(direction)) {
           this.#position.x++;
           this.#maze.location = this.position;
-          return this.#position;
+          return this.position;
         } else {
           return "Blocked!";
         }
 
       case "left":
-        if (this.#validMove(direction)) {
+        if (this.#isValidMove(direction)) {
           this.#position.x--;
           this.#maze.location = this.#position;
           return this.position;
@@ -52,7 +52,7 @@ class Player {
         }
 
       case "up":
-        if (this.#validMove(direction)) {
+        if (this.#isValidMove(direction)) {
           this.#position.y--;
           this.#maze.location = this.#position;
           return this.position;
@@ -61,7 +61,7 @@ class Player {
         }
 
       case "down":
-        if (this.#validMove(direction)) {
+        if (this.#isValidMove(direction)) {
           this.#position.y++;
           this.#maze.location = this.#position;
           return this.position;
@@ -74,7 +74,7 @@ class Player {
     }
   }
 
-  #validMove(direction) {
+  #isValidMove(direction) {
     if (direction == "right") {
       if (
         this.#position.x + 1 == this.#maze.gridInfo.width ||
@@ -114,8 +114,16 @@ class Player {
     }
   }
 
+  #isDone() {
+    if (this.#maze.maze[this.#position.y][this.#position.x] == "E") {
+      return true;
+    }
+
+    return false;
+  }
+
   get position() {
-    return this.#position;
+    return { isDone: this.#isDone(), position: this.#position };
   }
 }
 
