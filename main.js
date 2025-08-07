@@ -4,14 +4,10 @@ const Player = require("./Player");
 let maze = new Maze();
 let player = new Player(maze);
 
-console.log(player.position);
-console.log(player.move("right")); 
-console.log(player.move("down"));
-console.log(player.move("down"));
-console.log(player.move("right"));
-console.log(player.move("right"));
-console.log(player.move("down"));
-console.log(player.move("down"));
-console.log(player.move("left"));
-console.log(player.move("left"));
-console.log(player.move("down"));
+// this is the answer to the maze that is in Maze.js
+
+const rightDirections = ["right", "down", "down", "right", "right", "down", "down", "left", "left", "down"]
+
+for (let direction of rightDirections) {
+   console.log(player.move(direction).position)
+} 
