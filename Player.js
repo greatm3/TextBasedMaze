@@ -41,7 +41,7 @@ class Player {
       case "right":
         return x + 1 < this.#maze.gridInfo.width && maze[y][x + 1] != "#";
       case "left":
-        return x < 0 && maze[y][x - 1] != "#";
+        return x > 0 && maze[y][x - 1] != "#";
       case "up":
         return y - 1 < 0 && maze[y - 1][x] != "#";
       case "down":
