@@ -18,15 +18,7 @@ class Maze {
       x: 0,
       y: 0,
     };
-  }
-
-  set location(position) {
-    this.maze[position.y][position.x] = "x";
-  }
-
-  get location() {
-    return this.maze;
-  }
+  } 
 }
 
 class Player {
@@ -47,16 +39,24 @@ class Player {
         } else {
           return "Blocked!";
         }
+        break;
 
-        break;
       case "left":
-        this.position.x--;
+        if (this.#validMove(direction)) {
+          this.position.x--;
+          this.#maze.location = this.position;
+        } else {
+          return "Blocked!";
+        }
         break;
+
       case "up":
         this.position.y--;
         break;
+
       case "down":
         this.position.y++;
+
       default:
         break;
     }
@@ -88,3 +88,5 @@ class Player {
     return this.#maze.location;
   }
 }
+
+module.exports = { Maze, Player };
