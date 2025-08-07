@@ -1,5 +1,3 @@
-const Maze = require("./Maze.js")
-
 class Player {
   #maze;
   #position;
@@ -30,52 +28,19 @@ class Player {
   }
 
   #isValidMove(direction) {
+    const x = this.#position.x;
+    const y = this.#position.y;
+    const maze = this.#maze.maze;
 
-    const x = this.#position.x
-    const y = this.#position.y
-    const maze = this.#maze
-
-    switch(direction) {
-        case "right": return 
-
-    }
-
-    if (direction == "right") {
-      if (
-        this.#position.x + 1 == this.#maze.gridInfo.width ||
-        this.#maze.maze[this.#position.y][this.#position.x + 1] == "#"
-      ) {
-        return false;
-      }
-
-      return true;
-    } else if (direction == "left") {
-      if (
-        this.#position.x == 0 ||
-        this.#maze.maze[this.#position.y][this.#position.x - 1] == "#"
-      ) {
-        return false;
-      }
-
-      return true;
-    } else if (direction == "up") {
-      if (
-        this.position.y == 0 ||
-        this.#maze.maze[this.#position.y - 1][this.#position.x] == "#"
-      ) {
-        return false;
-      }
-
-      return true;
-    } else {
-      if (
-        this.position.y + 1 == this.#maze.gridInfo.height ||
-        this.#maze.maze[this.#position.y + 1][this.#position.x] == "#"
-      ) {
-        return false;
-      }
-
-      return true;
+    switch (direction) {
+      case "right":
+        return x + 1 < this.#maze.gridInfo.width && maze[y][x + 1] != "#";
+      case "left":
+        return x == 0 && maze[y][x - 1] != "#";
+      case "up":
+        return y - 1 < 0 && maze[y - 1][x] != "x";
+      case "down":
+        return y + 1 < this.#maze.gridInfo.height && maze[y + 1][x] != "x";
     }
   }
 
