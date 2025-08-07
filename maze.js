@@ -41,8 +41,13 @@ class Player {
   move(direction) {
     switch (direction) {
       case "right":
-        this.position.x++;
-        this.#maze.location = this.position;
+        if (this.#validMove(direction)) {
+          this.position.x++;
+          this.#maze.location = this.position;
+        } else {
+          return "Blocked!"
+        }
+        
         break;
       case "left":
         this.position.x--;
@@ -79,6 +84,7 @@ let game = new Maze();
 let player = new Player(game);
 
 player.move("right");
+console.log(player.move("right"))
 
 console.log(player);
 console.log(player.maze);
